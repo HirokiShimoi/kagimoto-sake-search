@@ -1,4 +1,5 @@
 import { useState } from "react"
+import './SearchPage.css';
 
 const SearchPage = () => {
     const [keyword, setKeyword] = useState(''); //フリーワード検索
@@ -9,6 +10,8 @@ const SearchPage = () => {
     const [spec, setSpec] = useState(""); //精米スペック
     const [rice, setRice] = useState(""); //酒米の種類
     const [error, setError] = useState("");
+    const [gift,setGift] = useState("");
+    const [stock,setStock] = useState("");
 
     const handlePriceChange = (setter) => (e) => {
         const value = e.target.value.replace(/[^0-9]/g, '');
@@ -19,6 +22,28 @@ const SearchPage = () => {
             setter(value);
             setError("");  // clear the error message
         }
+    };
+
+    const handleClear = () => {
+        setKeyword('');     // キーワードステートを初期化
+        setMinPrice('');    // 最低価格ステートを初期化
+        setMaxPrice('');    // 最高価格ステートを初期化
+        setSpicy('');       // スパイシー（甘辛度）ステートを初期化
+        setSmell('');       // 香り（種類）ステートを初期化
+        setSpec('');        // スペック（仕様）ステートを初期化
+        setRice('');        // ご飯（種類）ステートを初期化
+        setError('');       // エラー（バリデーションエラーメッセージ）ステートを初期化
+        setGift('');        // ギフト（用途）ステートを初期化
+        setStock('');   
+    };
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        console.log('handleSearch function is called');
+        const searchParams = {
+            keyword,minPrice,maxPrice,spicy,smell,spec,rice,error,gift,stock,
+        }; 
+        console.log(searchParams)
     };
 
     const handleKeywordChange = (event) => {
@@ -51,6 +76,13 @@ const SearchPage = () => {
         setRice(event.target.value);
       };
 
+      const handleGiftChange = (event) => {
+        setGift(event.target.value);
+      };
+
+      const handleStockChange = (event) => {
+        setStock(event.target.value);
+      };
 
     return(
         <>
@@ -134,7 +166,7 @@ const SearchPage = () => {
                         <tr>
                             <td>香り</td>
                             <td>
-                                <ul className="input-wrapper">
+                                <ul className="input-wrapper d-flex flex-row flex-wrap list-unstyled">
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
                                             <input
@@ -211,7 +243,7 @@ const SearchPage = () => {
                         <tr>
                             <td>スペック</td>
                             <td>
-                                <ul className="input-wrapper">
+                                <ul className="input-wrapperinput-wrapper d-flex flex-row flex-wrap list-unstyled">
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
                                             <input type="radio" name="spec" value="純米" id="jyunnmai" onChange={handleSpecChange} />
@@ -258,7 +290,7 @@ const SearchPage = () => {
                         <tr>
                             <td>酒米</td>
                             <td>
-                              <ul className="input-wrapper">
+                              <ul className="input-wrapper d-flex flex-row flex-wrap list-unstyled">
                                 <li className="category-selecter flex-fill">
                                     <div className="check-box">
                                         <input type="radio" name="sakamai" value="山田錦" onChange={handleRiceChange}/>
@@ -310,8 +342,58 @@ const SearchPage = () => {
                               </ul>
                             </td>
                         </tr>
+                        <tr>
+                            <td>用途</td>
+                            <td>
+                                <ul className="input-wrapper d-flex flex-row flex-wrap list-unstyled">
+                                    <li className="category-selecter flex-fill">
+                                        <div className="check-box">
+                                            <input type="radio" name="gift" value="gift" onChange={handleGiftChange}/>
+                                        </div>
+                                        <div className="info">
+                                            <label>ギフト用</label>
+                                        </div>
+                                    </li>
+                                    <li className="category-selecter flex-fill">
+                                        <div className="check-box">
+                                            <input type="radio" name="gift" value="private" onChange={handleGiftChange}/>
+                                        </div>
+                                        <div className="info">
+                                            <label>個人用</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>在庫</td>
+                            <td>
+                                <ul className="input-wrapper d-flex flex-row flex-wrap list-unstyled">
+                                    <li className="category-selecter flex-fill">
+                                        <div className="check-box">
+                                            <input type="radio" name="stock" value="onstock" onChange={handleStockChange}/>
+                                        </div>
+                                        <div className="info">
+                                            <label>在庫あり</label>
+                                        </div>
+                                    </li>
+                                    <li className="category-selecter flex-fill">
+                                        <div className="check-box">
+                                            <input type="radio" name="stock" value="offstock" onChange={handleStockChange}/>
+                                        </div>
+                                        <div className="info">
+                                            <label>在庫なし</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
+                <div className="d-flex justify-content-center mt-3">
+                    <button className="btn btn-secondary" onClick={handleClear}>条件をクリア</button>
+                    <button className="btn btn-primary mr-2" onClick={handleSearch}>この条件で検索</button>
+                </div>
             </form>
         </>
     )
