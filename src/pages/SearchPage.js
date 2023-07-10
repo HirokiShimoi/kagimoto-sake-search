@@ -60,7 +60,6 @@ const SearchPage = () => {
     };
 
     const handleSpicyChange = (event) => {
-        console.log(event)
         const {value, checked } = event.target;
         setSpicy(prevState => {
             if (checked) {
@@ -69,19 +68,40 @@ const SearchPage = () => {
                 return prevState.filter(item => item !== value);
             }
         });
-      };
+    };
     
-      const handleSmellChange = (event) => {
-        setSmell(event.target.value);
-      };
+    const handleSmellChange = (event) => {
+        const { value, checked } = event.target
+        setSmell(prevState => {
+            if (checked) {
+                return [...prevState,value]
+            } else {
+                return prevState.filter(item => item !== value);
+            }
+        });
+    };
     
-      const handleSpecChange = (event) => {
-        setSpec(event.target.value);
-      };
+    const handleSpecChange = (event) => {
+        const { value, checked } = event.target
+        setSpec(prevState => {
+            if (checked) {
+                return [...prevState,value]
+            } else {
+                return prevState.filter(item => item !== value);
+            }
+        });
+    };
     
-      const handleRiceChange = (event) => {
-        setRice(event.target.value);
-      };
+    const handleRiceChange = (event) => {
+        const { value, checked } = event.target
+        setRice(prevState => {
+            if (checked) {
+                return [...prevState,value]
+            } else {
+                return prevState.filter(item => item !== value);
+            }
+        });
+    };
 
       const handleGiftChange = (event) => {
         setGift(event.target.value);
@@ -114,11 +134,11 @@ const SearchPage = () => {
                             <td>
                               <div className="d-flex align-items-center">
                                 <div className="price-en">
-                                  <input type="text" placeholder="￥" id="minPriceInput" value={minPrice} onChange={handlePriceChange(setMinPrice)} />
+                                  <input type="number" placeholder="￥" id="minPriceInput" value={minPrice} onChange={handlePriceChange(setMinPrice)} />
                                 </div>
                                 <span className="from-to">~</span>
                                 <div className="price-en">
-                                  <input type="text" placeholder="￥" id="maxPriceInput" value={maxPrice} onChange={handlePriceChange(setMaxPrice)} />
+                                  <input type="number" placeholder="￥" id="maxPriceInput" value={maxPrice} onChange={handlePriceChange(setMaxPrice)} />
                                 </div>
                               </div>
                             </td>
@@ -177,10 +197,10 @@ const SearchPage = () => {
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
                                             <input
-                                              type="radio"
+                                              type="checkbox"
                                               name="smell"
                                               id="strong-smell"
-                                              value="strong"
+                                              value="強い"
                                               onChange={handleSmellChange}
                                             />
                                         </div>
@@ -191,10 +211,10 @@ const SearchPage = () => {
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
                                             <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="smell"
                                             id="moderate-strong-smell"
-                                            value="moderate-strong"
+                                            value="やや強い"
                                             onChange={handleSmellChange}
                                             />
                                         </div>
@@ -205,10 +225,10 @@ const SearchPage = () => {
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
                                             <input
-                                                type="radio"
+                                                type="checkbox"
                                                 name="smell"
                                                 id="moderate-smell"
-                                                value="moderate"
+                                                value="普通"
                                                 onChange={handleSmellChange}
                                             />
                                         </div>
@@ -219,10 +239,10 @@ const SearchPage = () => {
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
                                              <input
-                                                type="radio"
+                                                type="checkbox"
                                                  name="smell"
                                                  id="moderate-weak-smell"
-                                                 value="moderate-weak"
+                                                 value="やや弱い"
                                                  onChange={handleSmellChange}
                                              />
                                         </div>
@@ -233,10 +253,10 @@ const SearchPage = () => {
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
                                         <input
-                                            type="radio"
+                                            type="checkbox"
                                             name="smell"
                                             id="weak-smell"
-                                            value="weak"
+                                            value="弱い"
                                             onChange={handleSmellChange}
                                         />
                                         </div>
@@ -253,7 +273,7 @@ const SearchPage = () => {
                                 <ul className="input-wrapperinput-wrapper d-flex flex-row flex-wrap list-unstyled">
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="radio" name="spec" value="純米" id="jyunnmai" onChange={handleSpecChange} />
+                                            <input type="checkbox" name="spec" value="純米" id="jyunnmai" onChange={handleSpecChange} />
                                         </div>
                                         <div className="info">
                                             <label htmlFor="jyunnmai">純米</label>
@@ -261,7 +281,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="radio" name="spec" value="純米吟醸" id="jyunnmaiginnjyou" onChange={handleSpecChange} />
+                                            <input type="checkbox" name="spec" value="純米吟醸" id="jyunnmaiginnjyou" onChange={handleSpecChange} />
                                         </div>
                                         <div className="info">
                                             <label htmlFor="jyunnmaiginnjyou">純米吟醸</label>
@@ -269,7 +289,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="radio" name="spec" value="純米大吟醸" id="jyunnmaidaiginnjyou" onChange={handleSpecChange} />
+                                            <input type="checkbox" name="spec" value="純米大吟醸" id="jyunnmaidaiginnjyou" onChange={handleSpecChange} />
                                         </div>
                                         <div className="info">
                                             <label htmlFor="jyunnmaidaiginnjyou">純米大吟醸</label>
@@ -277,7 +297,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="radio" name="spec" value="吟醸" id="ginjyou" onChange={handleSpecChange} />
+                                            <input type="checkbox" name="spec" value="吟醸" id="ginjyou" onChange={handleSpecChange} />
                                         </div>
                                         <div className="info">
                                             <label htmlFor="ginjyou">吟醸</label>
@@ -285,7 +305,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="radio" name="spec" value="大吟醸" id="daiginjyou" onChange={handleSpecChange} />
+                                            <input type="checkbox" name="spec" value="大吟醸" id="daiginjyou" onChange={handleSpecChange} />
                                         </div>
                                         <div className="info">
                                             <label htmlFor="daiginjyou">大吟醸</label>
@@ -300,7 +320,7 @@ const SearchPage = () => {
                               <ul className="input-wrapper d-flex flex-row flex-wrap list-unstyled">
                                 <li className="category-selecter flex-fill">
                                     <div className="check-box">
-                                        <input type="radio" name="sakamai" value="山田錦" onChange={handleRiceChange}/>
+                                        <input type="checkbox" name="sakamai" value="山田錦" onChange={handleRiceChange}/>
                                     </div>
                                     <div className="info">
                                         <label>山田錦</label>
@@ -308,7 +328,7 @@ const SearchPage = () => {
                                 </li>
                                 <li className="category-selecter flex-fill">
                                     <div className="check-box">
-                                        <input type="radio" name="sakamai" value="五百万石" onChange={handleRiceChange} />
+                                        <input type="checkbox" name="sakamai" value="五百万石" onChange={handleRiceChange} />
                                     </div>
                                     <div className="info">
                                          <label>五百万石</label>
@@ -316,7 +336,7 @@ const SearchPage = () => {
                                 </li>
                                 <li className="category-selecter flex-fill">
                                     <div className="check-box">
-                                         <input type="radio" name="sakamai" value="愛山" onChange={handleRiceChange}/>
+                                         <input type="checkbox" name="sakamai" value="愛山" onChange={handleRiceChange}/>
                                     </div>
                                     <div className="info">
                                          <label>愛山</label>
@@ -324,7 +344,7 @@ const SearchPage = () => {
                                 </li>
                                 <li className="category-selecter flex-fill">
                                     <div className="check-box">
-                                        <input type="radio" name="sakamai" value="雄町" onChange={handleRiceChange}/>
+                                        <input type="checkbox" name="sakamai" value="雄町" onChange={handleRiceChange}/>
                                     </div>
                                     <div className="info">
                                         <label>雄町</label>
@@ -332,7 +352,7 @@ const SearchPage = () => {
                                 </li>
                                 <li className="category-selecter flex-fill">
                                     <div className="check-box">
-                                        <input type="radio" name="sakamai" value="美山錦" onChange={handleRiceChange}/>
+                                        <input type="checkbox" name="sakamai" value="美山錦" onChange={handleRiceChange}/>
                                     </div>
                                     <div className="info">
                                         <label>美山錦</label>
@@ -340,7 +360,7 @@ const SearchPage = () => {
                                 </li>
                                 <li className="category-selecter flex-fill">
                                     <div className="check-box">
-                                        <input type="radio" name="sakamai" value="その他" onChange={handleRiceChange}/>
+                                        <input type="checkbox" name="sakamai" value="その他" onChange={handleRiceChange}/>
                                     </div>
                                     <div className="info">
                                         <label>その他</label>
