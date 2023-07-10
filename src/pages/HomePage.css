@@ -1,0 +1,26 @@
+.toppage {
+    background-image: url(../images/bollinger.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.toppage::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(37,39,71,0.7);
+
+}
+
+.toppage-form{
+    z-index: 5;
+}
+
+.sake-card { 
+    z-index: 2;
+}

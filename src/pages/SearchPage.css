@@ -1,3 +1,7 @@
 .check-box, .info {
     display: inline-block;
 }
+
+.sake-search-btn{
+    z-index: 2;
+}
