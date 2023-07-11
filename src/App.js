@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes ,Route } from "react-router-dom";
+import { Header, Footer } from './pages/Header_Footer';
 
 import HomePage from "./pages/HomePage";
 import SearchPage from './pages/SearchPage';
@@ -7,10 +8,12 @@ import SearchPage from './pages/SearchPage';
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element= {<HomePage />}/>
-        <Route path="/search" element= {<SearchPage />}/>
-      </Routes>
+      <Header />
+        <Routes>
+          <Route path="/" element= {<HomePage />}/>
+          <Route path="/search" element= {<SearchPage />}/>
+        </Routes>
+      <Footer />
     </Router>
   );
 }
