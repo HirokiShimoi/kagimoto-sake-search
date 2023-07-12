@@ -11,7 +11,7 @@ function App() {
       <Header />
         <Routes>
           <Route path="/" element= {<HomePage />}/>
-          <Route path="/search" element= {<SearchPage />}/>
+          <Route path="/search-sake" element= {<SearchPage />}/>
         </Routes>
       <Footer />
     </Router>

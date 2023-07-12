@@ -1,5 +1,6 @@
 import { useState } from "react"
 import './SearchPage.css';
+import { useNavigate } from "react-router-dom";
 
 const SearchPage = () => {
     const [keyword, setKeyword] = useState(''); //フリーワード検索
@@ -105,15 +106,21 @@ const SearchPage = () => {
 
       const handleGiftChange = (event) => {
         setGift(event.target.value);
-      };
+    };
 
       const handleStockChange = (event) => {
         setStock(event.target.value);
-      };
+    };
+
+      const navigate = useNavigate();
+
+      const handleTop = (event) => {
+        navigate("/")
+    };
 
     return(
         <>
-            <h1>日本酒を検索</h1>
+            <h1 className="d-flex justify-content-center">日本酒を検索</h1>
             <form>
                 <table className="table table-striped">
                     <tbody>
@@ -418,8 +425,9 @@ const SearchPage = () => {
                     </tbody>
                 </table>
                 <div className="d-flex justify-content-center mt-3">
-                    <button className="btn btn-secondary" onClick={handleClear}>条件をクリア</button>
-                    <button className="btn btn-primary mr-2" onClick={handleSearch}>この条件で検索</button>
+                    <button className="btn btn-primary m-2" onClick={handleTop}>TOPに戻る</button>
+                    <button className="btn btn-secondary m-2" onClick={handleClear}>条件をクリア</button>
+                    <button className="btn btn-primary m-2" onClick={handleSearch}>この条件で検索</button>
                 </div>
             </form>
         </>
