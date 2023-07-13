@@ -4,6 +4,8 @@ import './HomePage.css';
 import ohmine from "../images/ohmine.jpg"
 import belleepoque from "../images/bellepoque.jpg"
 import tenshi from "../images/tenshi.jpg"
+import { Header, Footer } from '../pages/Header_Footer';
+
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -14,6 +16,7 @@ const HomePage = () => {
 
   return (
     <div>
+      <Header/>
       <div className='toppage vh-100 d-flex align-items-center justify-content-center'>
           <div className="card sake-card m-3" style={{width: 18 + "rem"}}>
               <img src={ohmine} className="card-img-top" alt="大嶺"/>
@@ -37,6 +40,7 @@ const HomePage = () => {
               </div>
           </div>    
       </div>
+      <Footer/>
     </div>
   )
   
