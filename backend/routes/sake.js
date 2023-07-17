@@ -13,7 +13,7 @@ router.get('/',async (req,res) => {
 
 router.get ('/sake/:sakeId',async (req,res) => {
     const { sakeId } = req.params;
-    const sake = await sake.findById(sakeId);
+    const sake = await Sake.findById(sakeId);
     res.json(sake); 
 });
 

@@ -1,9 +1,11 @@
 const csv = require('csv-parser');  // You might need to install this package
 const fs = require('fs');
+const Sake = require('./models/sake');
+
 
 const results = [];
 
-fs.createReadStream('csvdata/your_sake_data.csv')
+fs.createReadStream('csvdata/kid2.csv')
   .pipe(csv())
   .on('data', (data) => {
     // split the spicy field into an array
