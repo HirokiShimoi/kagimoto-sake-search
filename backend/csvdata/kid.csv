@@ -1,0 +1,19 @@
+﻿_id,name,maker,region,price_large,price_small,spicy,smell,spec,rice,stock,gift,cool,ImageUrl,description
+,紀土 純米酒,平和酒造,和歌山,1045,2090,中口,普通,純米,山田錦,TRUE,FALSE,FALSE,https://www.af-1.jp/bottle/10184.jpg,"日本酒初心者でもスッと飲める
+優しい味は、癒しの味。"
+,紀土 純米吟醸 ,平和酒造,和歌山,1243,2486,中口,普通,純米吟醸,山田錦,TRUE,FALSE,FALSE,https://www.af-1.jp/bottle/10181.jpg,"華やかな優しい吟醸香が広がる
+透明感のある綺麗な味"
+,紀土 純米大吟醸 山田五〇,平和酒造,和歌山,3500,1870,中口,"やや強い,普通",純米大吟醸,山田錦,TRUE,FALSE,FALSE,https://www.af-1.jp/bottle/10534.jpg,"このスペック、この味で、この価格！！
+はっきり言って安いです。"
+,紀土 純米大吟醸 山田四十五,平和酒造,和歌山,2090,4180,中口,"やや強い,普通",純米大吟醸,山田錦,TRUE,FALSE,FALSE,https://www.af-1.jp/bottle/11410.jpg,"爽やかなのに濃厚
+紀土だけが持つ絶妙のバランス感"
+,紀土 純米大吟醸 山田四〇,平和酒造,和歌山,2530,5060,中口,"やや強い,普通",純米大吟醸,山田錦,TRUE,FALSE,FALSE,https://www.af-1.jp/bottle/11373.jpg,"「紀土」の本気酒。
+これが本物のフルーティー"
+,カラクチキッド,平和酒造,和歌山,1155,11317,中口,普通,純米,山田錦,TRUE,FALSE,FALSE,https://www.af-1.jp/bottle/11317.jpg,"ふんわりとカラクチ。
+心地よい刺激。"
+,本紀土 純米,平和酒造,和歌山,1265,2530,中口,普通,純米,山田錦,TRUE,FALSE,FALSE,https://www.af-1.jp/bottle/13399.jpg,"旨さ華やかさそのまま！
+美しい低アル純米！"
+,本紀土 純米吟醸,平和酒造,和歌山,1408,2816,中口,普通,純米吟醸,山田錦,TRUE,FALSE,FALSE,https://www.af-1.jp/bottle/13255.jpg,"紀土の新ラインナップ！
+低め度数で親しみやすい飲み心地！！"
+,本紀土 純米大吟醸,平和酒造,和歌山,1705,3410,中口,普通,純米大吟醸,山田錦,TRUE,FALSE,FALSE,https://www.af-1.jp/bottle/10337.jpg,"旨さ華やかさそのまま！
+美しい低アル純米大吟醸！"
