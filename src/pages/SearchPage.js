@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useState,useContext } from "react"
 import './SearchPage.css';
 import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../contexts/SearchContext";
 
 const SearchPage = () => {
     const [keyword, setKeyword] = useState(''); //フリーワード検索
@@ -10,9 +11,11 @@ const SearchPage = () => {
     const [smell, setSmell] = useState(""); //香り
     const [spec, setSpec] = useState(""); //精米スペック
     const [rice, setRice] = useState(""); //酒米の種類
-    const [error, setError] = useState("");
-    const [gift,setGift] = useState("");
-    const [stock,setStock] = useState("");
+    const [error, setError] = useState("");//エラー
+    const [gift,setGift] = useState("");//ギフトかどうか
+    const [stock,setStock] = useState("");//在庫があるか
+
+    const {setSearchParams} = useContext(SearchContext)
 
     const handlePriceChange = (setter) => (e) => {
         const value = e.target.value.replace(/[^0-9]/g, '');
@@ -43,7 +46,9 @@ const SearchPage = () => {
         const searchParams = {
             keyword,minPrice,maxPrice,spicy,smell,spec,rice,error,gift,stock,
         }; 
-        console.log(searchParams)
+        setSearchParams(searchParams);
+        console.log(setSearchParams)
+        navigate('/sakeresult')
     };
 
     const handleKeywordChange = (event) => {
