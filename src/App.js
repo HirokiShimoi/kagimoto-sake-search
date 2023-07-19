@@ -1,15 +1,14 @@
 import React from "react";
-import { useState } from "react";
 import { BrowserRouter as Router, Routes ,Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import SearchPage from './pages/SearchPage';
 import SakeList from "./pages/Sakelist";
 import SearchResult from "./pages/SearchResult";
-import { SearchContext } from "./contexts/SearchContext";
+import { SearchProvider } from "./contexts/SearchContext";
+
 function App() {
-  const [searchParams, setSearchParams] = useState(null);
   return (
-    <SearchContext.Provider value={{searchParams, setSearchParams}}>
+    <SearchProvider>
       <Router>
           <Routes>
             <Route path="/" element= {<HomePage />}/>
@@ -18,7 +17,7 @@ function App() {
             <Route path="/sakeresult" element={<SearchResult />}/>
           </Routes>
       </Router>
-    </SearchContext.Provider>
+    </SearchProvider>
   );
 }
 
