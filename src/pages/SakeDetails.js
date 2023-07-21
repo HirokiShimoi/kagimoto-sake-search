@@ -5,16 +5,16 @@ import axios from 'axios';
 
 function SakeDetails (){
     const [sake,setSake] = useState(null);
-    const { sakeId } = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await axios(`http://localhost:5000/sake/${sakeId}`);
+            const result = await axios(`http://localhost:5000/sake/${id}`);
             setSake(result.data);
         };
 
         fetchdata();
-    },[sakeId]);
+    },[id]);
 
     if (!sake) return <p>Loading...</p>;
     

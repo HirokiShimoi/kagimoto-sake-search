@@ -4,10 +4,8 @@ const SakeSchema = new mongoose.Schema({
   name: String,         // 酒の名前
   maker: String,        // メーカー名
   region:String,        //都道府県
-  price: {              // 価格
-    large: Number,      // 1.8Lの価格
-    small: Number,      // 720mlの価格
-  },
+  price_large: Number,
+  price_small: Number,
   spicy: [String],        // 甘辛度
   smell: [String],        // 香り
   spec: String,         // 精米スペック

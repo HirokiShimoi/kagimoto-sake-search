@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext, useEffect, useState } from "react";
 import { SearchContext } from "../contexts/SearchContext";
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 
 
@@ -25,33 +26,43 @@ const SearchResult = () => {
     let filteredData = [];
 
     if(sakeData) {
-        console.log(sakeData)
         filteredData = sakeData.filter(sake => {
-            return (
-                sake.name.includes(searchParams.keyword)&&
-                (searchParams.minPrice === '' || sake.price >= searchParams.minPrice)
-            );
+            const isNameMatch = sake.name.includes(searchParams.keyword);
+            const minPrice = parseFloat(searchParams.minPrice);
+            const maxPrice = parseFloat(searchParams.maxPrice);
+            const isMinPriceMatch = !searchParams.minPrice || (sake.price_large >= minPrice || sake.price_small >= minPrice);
+            const isMaxPriceMatch = !searchParams.maxPrice || (sake.price_large <= maxPrice || sake.price_small <= maxPrice);
+            const spicyMatch = !searchParams.spicy.length || searchParams.spicy.some(sp => sake.spicy.includes(sp));
+            const smellMatch = !searchParams.smell.length || searchParams.smell.some(smell => sake.smell.includes(smell));
+            const specMatch = !searchParams.spec.length || searchParams.spec.some(spec => sake.spec.includes(spec));
+            const giftMatch = searchParams.gift ==='' || sake.gift.toString() === searchParams.gift;
+            const stockMatch = searchParams.stock ==='' || sake.stock.toString() === searchParams.stock;
+            console.log(isNameMatch);
+            return isNameMatch && isMinPriceMatch && isMaxPriceMatch&&spicyMatch&&smellMatch&&specMatch&&giftMatch&&stockMatch;
         });
-        console.log(filteredData)
     }
     return(
         <> 
             <div>
                 <h1>Sake List</h1>
                 <div className="d-flex flex-wrap">
-                    {filteredData.map(sake => (
-                        <div key={sake._id} className="card " style={{width: '18rem'}}>
-                            <img src={sake.ImageUrl} className="card-img-top" alt={sake.name} />
-                            <div className="card-body text-center">
-                                <h5 className="card-title">{sake.name}</h5>
-                                <button className="btn btn-primary sake-search-btn" >Go Search</button>              
+                    {filteredData.length > 0 ? (
+                        filteredData.map(sake => (
+                            <div key={sake._id} className="card " style={{width: '18rem'}}>
+                                <img src={sake.ImageUrl} className="card-img-top" alt={sake.name} />
+                                <div className="card-body text-center">
+                                    <h5 className="card-title">{sake.name}</h5>
+                                    <Link to={`/sake/${sake._id}`}className="btn btn-primary sake-search-btn">詳しく見る</Link>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))
+                    ) : (
+                        <p>お探しの条件に一致するお酒は見つかりませんでした。</p>
+                    )}
                 </div>
             </div>
         </>
-    )
+    )    
 };
 
 export default SearchResult;

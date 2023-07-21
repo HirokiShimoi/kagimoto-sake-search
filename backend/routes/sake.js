@@ -11,9 +11,10 @@ router.get('/',async (req,res) => {
    }
 });
 
-router.get ('/sake/:sakeId',async (req,res) => {
-    const { sakeId } = req.params;
-    const sake = await Sake.findById(sakeId);
+router.get ('/:id',async (req,res) => {
+    const { id } = req.params;
+    console.log(req.params)
+    const sake = await Sake.findById(id);
     res.json(sake); 
 });
 

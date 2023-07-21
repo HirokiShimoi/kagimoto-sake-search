@@ -8,9 +8,9 @@ const SearchPage = () => {
     const [minPrice, setMinPrice] = useState(''); //最低価格
     const [maxPrice, setMaxPrice] = useState(''); //最高価格
     const [spicy, setSpicy] = useState([]); //甘辛度
-    const [smell, setSmell] = useState(""); //香り
-    const [spec, setSpec] = useState(""); //精米スペック
-    const [rice, setRice] = useState(""); //酒米の種類
+    const [smell, setSmell] = useState([]); //香り
+    const [spec, setSpec] = useState([]); //精米スペック
+    const [rice, setRice] = useState([]); //酒米の種類
     const [error, setError] = useState("");//エラー
     const [gift,setGift] = useState("");//ギフトかどうか
     const [stock,setStock] = useState("");//在庫があるか
