@@ -11,6 +11,7 @@ function SakeDetails (){
         const fetchdata = async () => {
             const result = await axios(`http://localhost:5000/sake/${id}`);
             setSake(result.data);
+            console.log(id);
         };
 
         fetchdata();
@@ -20,7 +21,33 @@ function SakeDetails (){
     
     return (
         <div>
-            <h2>{sake.name}</h2>
+            <div className='sakedetail-container container'>
+                <div className='row'>
+                    <div className='col-6'>
+                        <img src={sake.imageUrl} alt={sake.imageUrl}/>
+                    </div>
+                    <div className='col-6'>
+                        <h2 className='m-3'>{sake.productName}</h2>
+                        <h5 className='m-3'>{sake.description}</h5>
+                        <p className='m-3'>{sake.content}</p>
+                        <div className='mt-5'>
+                            <table className='table table-striped'>
+                                <tbody>
+                                    {sake.variations.map((variation, index) => {
+                                        console.log(sake.variations);
+                                        return (
+                                            <tr key={index}>
+                                                <td>{variation.products}</td>
+                                                <td>¥{variation.price}</td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 };

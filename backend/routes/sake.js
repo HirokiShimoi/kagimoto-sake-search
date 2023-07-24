@@ -13,8 +13,9 @@ router.get('/',async (req,res) => {
 
 router.get ('/:id',async (req,res) => {
     const { id } = req.params;
-    console.log(req.params)
-    const sake = await Sake.findById(id);
+    const sake = await Sake.findOne({ _id: id });
+    console.log(id);
+    console.log(sake);
     res.json(sake); 
 });
 
