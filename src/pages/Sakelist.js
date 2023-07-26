@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Header, Footer } from './Header_Footer';
+
 
 function SakeList() {
     const [sakes, setSakes] = useState([]);
@@ -15,6 +17,7 @@ function SakeList() {
   
     return (
       <div>
+        <Header/>
         <h1>Sake List</h1>
         <div className="d-flex flex-wrap">
         {sakes.map(sake => (
@@ -27,6 +30,7 @@ function SakeList() {
           </div>
         ))}
         </div>
+        <Footer/>
       </div>
     );    
   }

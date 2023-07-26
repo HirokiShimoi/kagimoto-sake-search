@@ -15,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 const sakeRouter = require('./routes/sake')
+
 app.use('/sake', sakeRouter)
 
 //.envファイルから MongoDB の URI を取得します。これは、MongoDB データベースに接続するために必要な情報です。

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Header,Footer } from './Header_Footer';
 
 
 function SakeDetails (){
@@ -21,6 +22,7 @@ function SakeDetails (){
     
     return (
         <div>
+            <Header/>
             <div className='sakedetail-container container'>
                 <div className='row'>
                     <div className='col-6'>
@@ -48,6 +50,7 @@ function SakeDetails (){
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 };

@@ -2,6 +2,7 @@ import { useState,useContext } from "react"
 import './SearchPage.css';
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../contexts/SearchContext";
+import { Header, Footer } from './Header_Footer';
 
 const SearchPage = () => {
     const [keyword, setKeyword] = useState(''); //フリーワード検索
@@ -125,6 +126,7 @@ const SearchPage = () => {
 
     return(
         <>
+            <Header />
             <h1 className="d-flex justify-content-center">日本酒を検索</h1>
             <form>
                 <table className="table table-striped">
@@ -132,27 +134,23 @@ const SearchPage = () => {
                         <tr>
                             <td>キーワード</td>
                             <td>
-                              <input
-                                type="text"
-                                id="keywordInput"
-                                placeholder="検索したいキーワードを入力"
-                                value={keyword}
-                                onChange={handleKeywordChange}
-                              />
+                                <input className="form-control" onChange={handleKeywordChange} type="text" placeholder="検索したいキーワードを入力" aria-label="default input example" id="keywordInput" value={keyword}/>
                             </td>
                         </tr>
                         <tr>
                             <td>価格</td>
                             <td>
-                              <div className="d-flex align-items-center">
-                                <div className="price-en">
-                                  <input type="number" placeholder="￥" id="minPriceInput" value={minPrice} onChange={handlePriceChange(setMinPrice)} />
+                                <div className="row">
+                                    <div className="price-en col-3">
+                                        <input className="form-control" type="number" placeholder="￥" id="minPriceInput" value={minPrice} onChange={handlePriceChange(setMinPrice)} />
+                                    </div>
+                                    <div className="col-auto">
+                                        <span className="from-to">~</span>
+                                    </div>
+                                    <div className="price-en col-3">
+                                        <input className="form-control" type="number" placeholder="￥" id="maxPriceInput" value={maxPrice} onChange={handlePriceChange(setMaxPrice)} />
+                                    </div>
                                 </div>
-                                <span className="from-to">~</span>
-                                <div className="price-en">
-                                  <input type="number" placeholder="￥" id="maxPriceInput" value={maxPrice} onChange={handlePriceChange(setMaxPrice)} />
-                                </div>
-                              </div>
                             </td>
                         </tr>
                         <tr>
@@ -161,15 +159,15 @@ const SearchPage = () => {
                                 <ul className="input-wrapper d-flex flex-row flex-wrap list-unstyled">
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="checkbox" name="amakarido" value="辛口" id="spicy" onChange={handleSpicyChange} />
+                                            <input className="form-check-input" type="checkbox" name="amakarido" value="辛口" id="spicy" onChange={handleSpicyChange} />
                                         </div>
                                         <div className="info">
-                                            <label htmlFor="spicy">辛口</label>
+                                            <label className="form-check-label" htmlFor="spicy">辛口</label>
                                         </div>
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="checkbox" name="amakarido" value="やや辛口" id="somewhat-spicy" onChange={handleSpicyChange} />
+                                            <input className="form-check-input" type="checkbox" name="amakarido" value="やや辛口" id="somewhat-spicy" onChange={handleSpicyChange} />
                                         </div>
                                         <div className="info">
                                             <label htmlFor="somewhat-spicy">やや辛口</label>
@@ -177,7 +175,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="checkbox" name="amakarido" value="中口" id="medium" onChange={handleSpicyChange} />
+                                            <input className="form-check-input" type="checkbox" name="amakarido" value="中口" id="medium" onChange={handleSpicyChange} />
                                         </div>
                                         <div className="info">
                                             <label htmlFor="medium">中口</label>
@@ -185,7 +183,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="checkbox" name="amakarido" value="やや甘口" id="somewhat-sweet" onChange={handleSpicyChange} />
+                                            <input className="form-check-input" type="checkbox" name="amakarido" value="やや甘口" id="somewhat-sweet" onChange={handleSpicyChange} />
                                         </div>
                                         <div className="info">
                                             <label htmlFor="somewhat-sweet">やや甘口</label>
@@ -208,13 +206,7 @@ const SearchPage = () => {
                                 <ul className="input-wrapper d-flex flex-row flex-wrap list-unstyled">
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input
-                                              type="checkbox"
-                                              name="smell"
-                                              id="strong-smell"
-                                              value="強い"
-                                              onChange={handleSmellChange}
-                                            />
+                                            <input className="form-check-input" type="checkbox" name="smell" id="strong-smell" value="強い" onChange={handleSmellChange}/>
                                         </div>
                                         <div className="info">
                                             <label htmlFor="strong-smell">強い</label>
@@ -222,13 +214,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input
-                                            type="checkbox"
-                                            name="smell"
-                                            id="moderate-strong-smell"
-                                            value="やや強い"
-                                            onChange={handleSmellChange}
-                                            />
+                                            <input className="form-check-input" type="checkbox" name="smell" id="moderate-strong-smell" value="やや強い" onChange={handleSmellChange}/>
                                         </div>
                                         <div className="info">
                                             <label htmlFor="moderate-strong-smell">やや強い</label>
@@ -236,13 +222,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input
-                                                type="checkbox"
-                                                name="smell"
-                                                id="moderate-smell"
-                                                value="普通"
-                                                onChange={handleSmellChange}
-                                            />
+                                            <input className="form-check-input" type="checkbox" name="smell" id="moderate-smell" value="普通" onChange={handleSmellChange}/>
                                         </div>
                                         <div className="info">
                                             <label htmlFor="moderate-smell">普通</label>
@@ -250,13 +230,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                             <input
-                                                type="checkbox"
-                                                 name="smell"
-                                                 id="moderate-weak-smell"
-                                                 value="やや弱い"
-                                                 onChange={handleSmellChange}
-                                             />
+                                             <input className="form-check-input" type="checkbox"  name="smell"  id="moderate-weak-smell"  value="やや弱い"  onChange={handleSmellChange}/>
                                         </div>
                                         <div className="info">
                                             <label htmlFor="moderate-weak-smell">やや弱い</label>
@@ -264,13 +238,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                        <input
-                                            type="checkbox"
-                                            name="smell"
-                                            id="weak-smell"
-                                            value="弱い"
-                                            onChange={handleSmellChange}
-                                        />
+                                        <input className="form-check-input" type="checkbox" name="smell" id="weak-smell" value="弱い" onChange={handleSmellChange}/>
                                         </div>
                                         <div className="info">
                                             <label htmlFor="weak-smell">弱い</label>
@@ -285,7 +253,7 @@ const SearchPage = () => {
                                 <ul className="input-wrapperinput-wrapper d-flex flex-row flex-wrap list-unstyled">
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="checkbox" name="spec" value="純米" id="jyunnmai" onChange={handleSpecChange} />
+                                            <input className="form-check-input" type="checkbox" name="spec" value="純米" id="jyunnmai" onChange={handleSpecChange} />
                                         </div>
                                         <div className="info">
                                             <label htmlFor="jyunnmai">純米</label>
@@ -293,7 +261,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="checkbox" name="spec" value="純米吟醸" id="jyunnmaiginnjyou" onChange={handleSpecChange} />
+                                            <input className="form-check-input" type="checkbox" name="spec" value="純米吟醸" id="jyunnmaiginnjyou" onChange={handleSpecChange} />
                                         </div>
                                         <div className="info">
                                             <label htmlFor="jyunnmaiginnjyou">純米吟醸</label>
@@ -301,7 +269,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="checkbox" name="spec" value="純米大吟醸" id="jyunnmaidaiginnjyou" onChange={handleSpecChange} />
+                                            <input className="form-check-input" type="checkbox" name="spec" value="純米大吟醸" id="jyunnmaidaiginnjyou" onChange={handleSpecChange} />
                                         </div>
                                         <div className="info">
                                             <label htmlFor="jyunnmaidaiginnjyou">純米大吟醸</label>
@@ -309,7 +277,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="checkbox" name="spec" value="吟醸" id="ginjyou" onChange={handleSpecChange} />
+                                            <input className="form-check-input" type="checkbox" name="spec" value="吟醸" id="ginjyou" onChange={handleSpecChange} />
                                         </div>
                                         <div className="info">
                                             <label htmlFor="ginjyou">吟醸</label>
@@ -317,7 +285,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="checkbox" name="spec" value="大吟醸" id="daiginjyou" onChange={handleSpecChange} />
+                                            <input className="form-check-input" type="checkbox" name="spec" value="大吟醸" id="daiginjyou" onChange={handleSpecChange} />
                                         </div>
                                         <div className="info">
                                             <label htmlFor="daiginjyou">大吟醸</label>
@@ -332,7 +300,7 @@ const SearchPage = () => {
                               <ul className="input-wrapper d-flex flex-row flex-wrap list-unstyled">
                                 <li className="category-selecter flex-fill">
                                     <div className="check-box">
-                                        <input type="checkbox" name="sakamai" value="山田錦" onChange={handleRiceChange}/>
+                                        <input className="form-check-input" type="checkbox" name="sakamai" value="山田錦" onChange={handleRiceChange}/>
                                     </div>
                                     <div className="info">
                                         <label>山田錦</label>
@@ -340,7 +308,7 @@ const SearchPage = () => {
                                 </li>
                                 <li className="category-selecter flex-fill">
                                     <div className="check-box">
-                                        <input type="checkbox" name="sakamai" value="五百万石" onChange={handleRiceChange} />
+                                        <input className="form-check-input" type="checkbox" name="sakamai" value="五百万石" onChange={handleRiceChange} />
                                     </div>
                                     <div className="info">
                                          <label>五百万石</label>
@@ -348,7 +316,7 @@ const SearchPage = () => {
                                 </li>
                                 <li className="category-selecter flex-fill">
                                     <div className="check-box">
-                                         <input type="checkbox" name="sakamai" value="愛山" onChange={handleRiceChange}/>
+                                         <input className="form-check-input" type="checkbox" name="sakamai" value="愛山" onChange={handleRiceChange}/>
                                     </div>
                                     <div className="info">
                                          <label>愛山</label>
@@ -356,7 +324,7 @@ const SearchPage = () => {
                                 </li>
                                 <li className="category-selecter flex-fill">
                                     <div className="check-box">
-                                        <input type="checkbox" name="sakamai" value="雄町" onChange={handleRiceChange}/>
+                                        <input className="form-check-input" type="checkbox" name="sakamai" value="雄町" onChange={handleRiceChange}/>
                                     </div>
                                     <div className="info">
                                         <label>雄町</label>
@@ -364,7 +332,7 @@ const SearchPage = () => {
                                 </li>
                                 <li className="category-selecter flex-fill">
                                     <div className="check-box">
-                                        <input type="checkbox" name="sakamai" value="美山錦" onChange={handleRiceChange}/>
+                                        <input className="form-check-input" type="checkbox" name="sakamai" value="美山錦" onChange={handleRiceChange}/>
                                     </div>
                                     <div className="info">
                                         <label>美山錦</label>
@@ -372,7 +340,7 @@ const SearchPage = () => {
                                 </li>
                                 <li className="category-selecter flex-fill">
                                     <div className="check-box">
-                                        <input type="checkbox" name="sakamai" value="その他" onChange={handleRiceChange}/>
+                                        <input className="form-check-input" type="checkbox" name="sakamai" value="その他" onChange={handleRiceChange}/>
                                     </div>
                                     <div className="info">
                                         <label>その他</label>
@@ -387,7 +355,7 @@ const SearchPage = () => {
                                 <ul className="input-wrapper d-flex flex-row flex-wrap list-unstyled">
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="radio" name="gift" value="gift" onChange={handleGiftChange}/>
+                                            <input className="form-check-input" type="radio" name="gift" value="gift" onChange={handleGiftChange}/>
                                         </div>
                                         <div className="info">
                                             <label>ギフト用</label>
@@ -395,7 +363,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="radio" name="gift" value="private" onChange={handleGiftChange}/>
+                                            <input className="form-check-input" type="radio" name="gift" value="private" onChange={handleGiftChange}/>
                                         </div>
                                         <div className="info">
                                             <label>個人用</label>
@@ -410,7 +378,7 @@ const SearchPage = () => {
                                 <ul className="input-wrapper d-flex flex-row flex-wrap list-unstyled">
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="radio" name="stock" value="onstock" onChange={handleStockChange}/>
+                                            <input className="form-check-input" type="radio" name="stock" value="onstock" onChange={handleStockChange}/>
                                         </div>
                                         <div className="info">
                                             <label>在庫あり</label>
@@ -418,7 +386,7 @@ const SearchPage = () => {
                                     </li>
                                     <li className="category-selecter flex-fill">
                                         <div className="check-box">
-                                            <input type="radio" name="stock" value="offstock" onChange={handleStockChange}/>
+                                            <input className="form-check-input" type="radio" name="stock" value="offstock" onChange={handleStockChange}/>
                                         </div>
                                         <div className="info">
                                             <label>在庫なし</label>
@@ -435,6 +403,7 @@ const SearchPage = () => {
                     <button className="btn btn-primary m-2" onClick={handleSearch}>この条件で検索</button>
                 </div>
             </form>
+            <Footer />
         </>
     )
 }

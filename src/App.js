@@ -6,6 +6,8 @@ import SakeList from "./pages/Sakelist";
 import SearchResult from "./pages/SearchResult";
 import { SearchProvider } from "./contexts/SearchContext";
 import SakeDetails from "./pages/SakeDetails";
+import Login from "./pages/Logintop";
+
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
       <Router>
           <Routes>
             <Route path="/" element= {<HomePage />}/>
+            <Route path="/login" element={<Login />}/>
             <Route path="/search-sake" element= {<SearchPage />}/>
             <Route path="/sakelist" element={<SakeList />}/>
             <Route path="/sakeresult" element={<SearchResult />}/>

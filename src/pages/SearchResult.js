@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { SearchContext } from "../contexts/SearchContext";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import { Header, Footer } from './Header_Footer';
 
 
 const SearchResult = () => {
@@ -42,6 +43,7 @@ const SearchResult = () => {
     }
     return(
         <> 
+            <Header/>
             <div>
                 <h1>Sake List</h1>
                 <div className="d-flex flex-wrap">
@@ -60,6 +62,7 @@ const SearchResult = () => {
                     )}
                 </div>
             </div>
+            <Footer />
         </>
     )    
 };
