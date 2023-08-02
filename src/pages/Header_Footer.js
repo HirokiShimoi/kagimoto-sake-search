@@ -1,19 +1,32 @@
 import { useLocation } from 'react-router-dom';
+import { useContext } from 'react';
 import kagimoto from "../images/kagimoto.png";
 import kagimoto_logo from "../images/kagimoto_logo.png";
 import "./Header_Footer.css";
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
+import { AuthContext } from '../contexts/AuthContext';
  
 export function Header() {
     const navigate = useNavigate();
     const location = useLocation();
+    const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+    const { user,setUser } = useContext(AuthContext)
 
     const login_btn = (e) => {
         e.preventDefault();
-        navigate("/login")
+        navigate("/")
     }
+    const logout_btn = () => {
+        if (window.confirm('ログアウトしますか？')) {
+            setIsLoggedIn(false);
+            setUser(null);
+            localStorage.removeItem('token')
+        }
+    };
+    console.log(user)
 
-    if (location.pathname=== '/'){
+    if (location.pathname=== '/toppage'){
         return (
             <header>
                 <img src={kagimoto} alt="logo" className="headerlogo"/>
@@ -26,7 +39,13 @@ export function Header() {
                     <div className='container-fluid d-flex justify-content-between'>
                         <img src={kagimoto_logo} alt="logo" width="250" className="d-inline-block align-text-top other-header-logo"/>
                         <div>
-                            <button className="btn btn-primary m-2" onClick={login_btn}>LOGIN</button>
+                        <span>ユーザー名: {user ? user.user : 'Loading...'}</span>
+                            {isLoggedIn ?(
+                                <button className="btn btn-primary m-2 edit-button" onClick={logout_btn}>ログアウト</button>
+                            ) : (
+                                <button className="btn btn-primary m-2 edit-button" onClick={login_btn}>ログイン</button>
+                            )}
+                            
                         </div>
                     </div>
                 </nav>

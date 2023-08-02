@@ -18,6 +18,7 @@ const SearchPage = () => {
 
     const {setSearchParams} = useContext(SearchContext)
 
+
     const handlePriceChange = (setter) => (e) => {
         const value = e.target.value.replace(/[^0-9]/g, '');
         if (isNaN(value) || value === '') {

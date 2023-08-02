@@ -1,25 +1,24 @@
 require('dotenv').config();
-
-//これらは、Node.js アプリケーションで必要な外部モジュールを読み込むためのコードです。
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
-//expressを使って新しいアプリケーションオブジェクトを作成します。
+const sakeRouter = require('./routes/sake');
+const uri = process.env.ATLAS_URI;
 const app = express();
 
-//CORS (Cross-Origin Resource Sharing) のミドルウェアを追加します。これは、別のドメイン/ポートから来るリクエストを許可するために必要です。
+process.on('unhandledRejection', (reason, promise) => {
+  console.log('Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
+// A Promise that gets rejected but the rejection is not caught anywhere
+let myPromise = new Promise((resolve, reject) => {
+  reject("Some error");
+});
+
+
 app.use(cors());
-
-//JSON を理解して解析するためのミドルウェアを追加します。これにより、リクエストのボディに含まれる JSON データを扱うことができます。
 app.use(express.json());
-
-const sakeRouter = require('./routes/sake')
-
-app.use('/sake', sakeRouter)
-
-//.envファイルから MongoDB の URI を取得します。これは、MongoDB データベースに接続するために必要な情報です。
-const uri = process.env.ATLAS_URI;
+app.use('/sake', sakeRouter);
 
 //mongooseを使って MongoDB データベースに接続します。ここでは、新しいパーサーとトポロジーを使用するように指定しています。
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -36,4 +35,6 @@ connection.once('open', () => {
 app.listen(5000, () => {
     console.log("Server is running on Port: 5000");
 });
+
+
 

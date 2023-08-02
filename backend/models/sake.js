@@ -18,6 +18,7 @@ const SakeSchema = new mongoose.Schema({
   rice: String,              // 酒米の種類
   gift: Boolean,             // ギフト対応しているか
   cool: Boolean,             // 要冷蔵か常温か
+  muddiness:Boolean,
   imageUrl: String,          // 画像のURL
   description: String,       // 商品の説明
   content: String,           // 商品の詳細説明

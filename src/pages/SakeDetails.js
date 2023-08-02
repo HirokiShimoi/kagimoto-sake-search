@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState, useContext} from 'react';
+import { useParams,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Header,Footer } from './Header_Footer';
+import { UserContext } from '../contexts/UserContext';
+import './css/SakeDetails.css'
 
 
 function SakeDetails (){
     const [sake,setSake] = useState(null);
     const { id } = useParams();
+    const { isLoggedIn } = useContext(UserContext);
+    const navigate =useNavigate(); 
+
+    const editProduct = () => {
+        navigate(`/edit/${id}`)
+    };
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -46,6 +54,7 @@ function SakeDetails (){
                                     })}
                                 </tbody>
                             </table>
+                            {isLoggedIn && <button className="btn btn-primary m-2 edit-button" onClick={editProduct}>編集</button>}
                         </div>
                     </div>
                 </div>
