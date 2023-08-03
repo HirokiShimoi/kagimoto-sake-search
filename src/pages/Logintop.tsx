@@ -54,7 +54,7 @@ function Login() {
                     </form>
                     {errorMessage && <p>{errorMessage}</p>}
                     {loading ? <LinearProgress style={{marginTop: '20px', marginBottom: '20px'}} /> : null}
-                    <button type='submit' onClick={() => navigate("/toppage")}>アカウントがない方はこちら</button>
+                    <button type='button' onClick={() => navigate("/toppage")}>アカウントがない方はこちら</button>
                 </div>
             </div>
         </div>
