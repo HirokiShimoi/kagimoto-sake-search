@@ -1,4 +1,6 @@
-import React, { ChangeEvent, Dispatch, SetStateAction } from 'react';
+// CheckboxGroup.tsx
+import React, { Dispatch, SetStateAction } from 'react';
+import handleCheckboxChange from './CheckboxChange'; // CheckboxChange.tsxからhandleCheckboxChange関数をインポート
 
 type CheckboxGroupProps = {
     values: string[];
@@ -7,17 +9,7 @@ type CheckboxGroupProps = {
 };
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({values, setter, options}) => {
-    const handleCheckboxChange = (setter: Dispatch<SetStateAction<string[]>>, state: string[]) => 
-    (event: ChangeEvent<HTMLInputElement>) => {
-        const { value, checked } = event.target;
-        setter((prevState: string[]) => {
-            if (checked) {
-                return [...prevState, value]
-            } else {
-                return prevState.filter((item: string) => item !== value);
-            }
-        });
-    };
+    const handleChange = handleCheckboxChange(setter); // setterを渡してhandleChange関数を生成
 
     return (
         <ul className="input-wrapper d-flex flex-row flex-wrap list-unstyled">
@@ -25,7 +17,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({values, setter, options}) 
                 return (
                     <li className="category-selecter flex-fill" key={option}>
                         <div className="check-box">
-                            <input className="form-check-input" type="checkbox" value={option} onChange={handleCheckboxChange(setter, values)} checked={values.includes(option)}/>
+                            <input className="form-check-input" type="checkbox" value={option} onChange={handleChange} checked={values.includes(option)}/>
                         </div>
                         <div className="info">
                             <label htmlFor={option}>{option}</label>
@@ -38,3 +30,5 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({values, setter, options}) 
 };
 
 export default CheckboxGroup;
+
+
