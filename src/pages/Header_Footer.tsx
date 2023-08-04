@@ -6,21 +6,36 @@ import "./Header_Footer.css";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
 import { AuthContext } from '../contexts/AuthContext';
+
+
+interface User {
+    user: string | null;
+}
+
+interface UserContextType {
+    isLoggedIn: Boolean;
+    setIsLoggedIn: (value:boolean) => void;
+}
+
+interface AuthContextType {
+    user: User;
+    setUser: (value: User | null) => void;
+  }
  
-export function Header() {
+export const Header:React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
     const { user,setUser } = useContext(AuthContext)
 
-    const login_btn = (e) => {
+    const login_btn = (e: React.MouseEvent) => {
         e.preventDefault();
         navigate("/")
     }
     const logout_btn = () => {
         if (window.confirm('ログアウトしますか？')) {
             setIsLoggedIn(false);
-            setUser(null);
+            setUser?.(null);
             localStorage.removeItem('token')
         }
     };
@@ -39,7 +54,7 @@ export function Header() {
                     <div className='container-fluid d-flex justify-content-between'>
                         <img src={kagimoto_logo} alt="logo" width="250" className="d-inline-block align-text-top other-header-logo"/>
                         <div>
-                        <span>ユーザー名: {user ? user.user : 'Loading...'}</span>
+                        <span>ユーザー名: {user ? user.username : 'Loading...'}</span>
                             {isLoggedIn ?(
                                 <button className="btn btn-primary m-2 edit-button" onClick={logout_btn}>ログアウト</button>
                             ) : (
