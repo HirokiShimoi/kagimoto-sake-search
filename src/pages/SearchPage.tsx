@@ -125,7 +125,7 @@ const NewSearchPage = () => {
                     <tr>
                         <td>酒米の種類</td>
                         <td>
-                            <CheckboxGroup values={spec} setter={setRice} options={['山田錦', '雄町', '愛山', '五百万石', '美山錦','その他']}/>
+                            <CheckboxGroup values={rice} setter={setRice} options={['山田錦', '雄町', '愛山', '五百万石', '美山錦','その他']}/>
                         </td>
                     </tr>
                     <tr>
@@ -177,8 +177,8 @@ const NewSearchPage = () => {
                 </tbody>
             </table>
             <div className="d-flex justify-content-center mt-3">
-                <button type="button" className="btn btn-primary m-2 onClick={handleTop}">TOPに戻る</button>
-                <button type="button" className="btn btn-secondary m-2 onClick={handleClear}">条件をクリア</button>
+                <button type="button" className="btn btn-primary m-2" onClick={handleTop}>TOPに戻る</button>
+                <button type="button" className="btn btn-secondary m-2" onClick={handleClear}>条件をクリア</button>
                 <button type="submit" className="btn btn-primary m-2">この条件で検索</button>
             </div>        
         </form>
