@@ -3,13 +3,13 @@ import './SearchPage.css';
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../contexts/SearchContext";
 import { Header, Footer } from './Header_Footer';
-import CheckboxGroup from "./CheckboxGroup";
+//import CheckboxGroup from "./CheckboxGroup";
 import { useForm } from "react-hook-form"
 
 const NewSearchPage = () => {
     const [keyword, setKeyword] = useState(''); //フリーワード検索
-    const [minPrice, setMinPrice] = useState(''); //最低価格
-    const [maxPrice, setMaxPrice] = useState(''); //最高価格
+    //const [minPrice, setMinPrice] = useState(''); //最低価格
+    //const [maxPrice, setMaxPrice] = useState(''); //最高価格
     const [spicy, setSpicy] = useState<string[]>([]); //甘辛度
     const [smell, setSmell] = useState<string[]>([]); //香り
     const [spec, setSpec] = useState<string[]>([]); //精米スペック
@@ -35,8 +35,6 @@ const NewSearchPage = () => {
 
     const handleClear = () => {
         setKeyword('');     
-        setMinPrice('');   
-        setMaxPrice('');   
         setSpicy([]);      
         setSmell([]);      
         setSpec([]);       
@@ -49,20 +47,38 @@ const NewSearchPage = () => {
         keywordInput: string;
         minPriceInput: number;
         maxPriceInput:number;
+        spicy: string[]; // 甘辛度
+        smell: string[]; // 香り
+        spec: string[];  // スペック
+        rice: string[];  // 酒米の種類
     };
 
-    const {register, handleSubmit, formState:{errors}, watch} = useForm<FormData>();
+    const {register,setValue, handleSubmit, formState:{errors}, watch} = useForm<FormData>();
+
     const minPriceWatch = watch("minPriceInput");
+
     const maxPriceWatch = watch("maxPriceInput");
 
+    const spicyWatch = watch("spicy",[])
+
+    const handleSpicyCheckboxChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+    
+        if (e.target.checked) {
+            setValue('spicy', [...spicyWatch, value]);
+        } else {
+            setValue('spicy', spicyWatch.filter(item => item !== value));
+        }
+    };
 
     const handleSearch = (data:FormData) => {
         const searchParams = {
             keyword: data.keywordInput, // フリーワード検索の値を取得
             minPrice: data.minPriceInput,
             maxPrice: data.maxPriceInput,
+            spicy: data.spicy || [], // チェックボックスの値を取得し、未選択の場合は空の配列をデフォルトとして設定
         }; 
-        //setSearchParams(searchParams);
+        console.log(searchParams)
         setSearchParams(searchParams);
         navigate('/sakeresult')
     }
@@ -96,7 +112,7 @@ const NewSearchPage = () => {
                                 </div>
                                 <div className="price-en col-3">
                                     <input className="form-control" type="number" placeholder="￥" id="maxPriceInput" 
-                                    {...register("maxPriceInput", {validate: value => (minPrice ? Number(value) >= Number(minPrice) : true) || "最高価格は最低価格以上で入力してください"
+                                    {...register("maxPriceInput", {validate: value => (minPriceWatch ? Number(value) >= Number(minPriceWatch) : true) || "最高価格は最低価格以上で入力してください"
                                     })}
                                     />
                                     {errors.maxPriceInput && <p>{errors.maxPriceInput.message}</p>}
@@ -107,27 +123,51 @@ const NewSearchPage = () => {
                     <tr>
                         <td>甘辛度</td>
                         <td>
-                            <CheckboxGroup values={spicy} setter={setSpicy} options={['辛口', 'やや辛口', '中口', 'やや甘口', '甘口']}/>
+                            <ul className="input-wrapper d-flex flex-row flex-wrap list-unstyled">
+                                {['辛口', 'やや辛口', '中口', 'やや甘口', '甘口'].map((option, index) => (
+                                    <li key={index} className="category-selecter flex-fill">
+                                        <div className="check-box">
+                                            <input
+                                                className="form-check-input"
+                                                type="checkbox"
+                                                value={option}
+                                                checked={spicy.includes(option)}
+                                                {...register("spicy")}
+                                                onChange={e => {
+                                                    if (e.target.checked) {
+                                                        setSpicy(prev => [...prev, e.target.value]);
+                                                    } else {
+                                                        setSpicy(prev => prev.filter(item => item !== e.target.value));
+                                                    }
+                                                }}
+                                            />
+                                            <label>{option}</label>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
                         </td>
                     </tr>
-                    <tr>
+                    {/*<tr>
                         <td>香り</td>
                         <td>
-                            <CheckboxGroup values={smell} setter={setSmell} options={['強い','やや強い', '普通', 'やや弱い', '弱い']}/>
+                        
+                            <CheckboxGroup name="smell" register={register} values={smell} setter={setSmell} onChange={handleSpicyCheckboxChange} options={['強い','やや強い', '普通', 'やや弱い', '弱い']}/>
                         </td>
                     </tr>
                     <tr>
                         <td>スペック</td>
                         <td>
-                            <CheckboxGroup values={spec} setter={setSpec} options={['純米', '純米吟醸', '純米大吟醸', '吟醸', '大吟醸']}/>
+                            <CheckboxGroup  name="spec" register={register} values={spec} setter={setSpec} options={['純米', '純米吟醸', '純米大吟醸', '吟醸', '大吟醸']}/>
                         </td>
                     </tr>
                     <tr>
                         <td>酒米の種類</td>
                         <td>
-                            <CheckboxGroup values={rice} setter={setRice} options={['山田錦', '雄町', '愛山', '五百万石', '美山錦','その他']}/>
+                            <CheckboxGroup name="rice" register={register} values={rice} setter={setRice} options={['山田錦', '雄町', '愛山', '五百万石', '美山錦','その他']}/>
                         </td>
                     </tr>
+                        */}
                     <tr>
                         <td>用途</td>
                         <td>
