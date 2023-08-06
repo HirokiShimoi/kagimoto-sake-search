@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Routes ,Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-//import SearchPage from './pages/SearchPage';
 import SakeList from "./pages/Sakelist";
 import SearchResult from "./pages/SearchResult";
 import EditSake from "./pages/EditSake";
-import NewSearchPage from "./pages/SearchPage";
+import UserSearchPage from "./pages/UserSakeSearch"
 import { SearchProvider } from "./contexts/SearchContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import { UserContext, UserProvider } from "./contexts/UserContext"; 
@@ -23,7 +22,7 @@ function App() {
                     <Routes>
                             <Route path="/" element= {<Login />}/>
                             <Route path="/toppage" element= {<HomePage />}/>
-                            <Route path="/search-sake" element= {< NewSearchPage />}/>
+                            <Route path="/search-sake" element= {<UserSearchPage />}/>
                             <Route path="/sakelist" element={<SakeList />}/>
                             <Route path="/sakeresult" element={<SearchResult />}/>
                             <Route path="/sake/:id" element={<SakeDetails />}/>
