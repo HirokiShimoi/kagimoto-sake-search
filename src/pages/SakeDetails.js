@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useContext} from 'react';
 import { useParams,useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Header,Footer } from './Header_Footer';
+import { Header,Footer } from '../components/Header_Footer';
 import { UserContext } from '../contexts/UserContext';
-import './css/SakeDetails.css'
 
 
 function SakeDetails (){

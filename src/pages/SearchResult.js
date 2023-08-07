@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { SearchContext } from "../contexts/SearchContext";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import { Header, Footer } from './Header_Footer';
+import { Header, Footer } from '../components/Header_Footer';
 
 
 const SearchResult = () => {

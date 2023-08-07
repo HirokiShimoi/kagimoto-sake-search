@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Header, Footer } from './Header_Footer';
+import { Header, Footer } from '../components/Header_Footer';
 
 
 function SakeList() {

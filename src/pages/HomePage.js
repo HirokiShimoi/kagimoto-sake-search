@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './HomePage.css';
+import '../css/HomePage.css';
 import ohmine from "../images/ohmine.jpg"
 import belleepoque from "../images/bellepoque.jpg"
 import tenshi from "../images/tenshi.jpg"
-import { Header, Footer } from '../pages/Header_Footer';
+import { Header, Footer } from '../components/Header_Footer';
 
 
 const HomePage = () => {

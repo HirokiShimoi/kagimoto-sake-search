@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import PrivateRoute from '../components/PrivateRoute'
 
 function EditSake() {
     const { id } = useParams();
     const navigate = useNavigate();
     const [sake,setSake] = useState('');
+    const [errorMessage,setErrorMessage] = useState('')
 
     useEffect(()=> {
         const fetchData = async () => {
@@ -48,12 +50,14 @@ function EditSake() {
             navigate(`/sake/${id}`);
         } catch (error) {
             console.error("Error updating sake: ", error);
+            setErrorMessage('An error occurred while updating the sake. Please try again later.')
         }
     };
 
     if (!sake) return <p>Loading...</p>;
 
   return (
+    <PrivateRoute>
     <div>
         <h1 className='d-flex justify-content-center m-4'>日本酒を編集</h1>
         <form>
@@ -158,7 +162,9 @@ function EditSake() {
         <button className='btn btn-primary m-2 edit-button' onClick={handleSave}>編集する</button>
         </div>
     </div>
+    {errorMessage && <div>{errorMessage}</div>}
+    </PrivateRoute>
   )
-}
+};
 
 export default EditSake;

@@ -2,10 +2,10 @@ import { useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 import kagimoto from "../images/kagimoto.png";
 import kagimoto_logo from "../images/kagimoto_logo.png";
-import "./Header_Footer.css";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
 import { AuthContext } from '../contexts/AuthContext';
+import "../css/Header_Footer.css";
 
 
 interface User {

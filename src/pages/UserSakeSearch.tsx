@@ -1,8 +1,8 @@
 import { useState,useContext } from "react"
-import './SearchPage.css';
+import '../css/SearchPage.css';
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../contexts/SearchContext";
-import { Header, Footer } from './Header_Footer';
+import { Header, Footer } from '../components/Header_Footer';
 
 const UserSearchPage = () => {
     const [keyword, setKeyword] = useState(''); //フリーワード検索
