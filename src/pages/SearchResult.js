@@ -29,10 +29,10 @@ const SearchResult = () => {
     if(sakeData) {
         filteredData = sakeData.filter(sake => {
             const isNameMatch = sake.productName.includes(searchParams.keyword);
-            const minPrice = parseFloat(searchParams.minPrice);
-            const maxPrice = parseFloat(searchParams.maxPrice);
-            const isMinPriceMatch = !searchParams.minPrice || sake.variations.some(variation => variation.price >= minPrice);
-            const isMaxPriceMatch = !searchParams.maxPrice || sake.variations.some(variation => variation.price <= maxPrice);
+            const minPrice = parseFloat(searchParams.minprice);
+            const maxPrice = parseFloat(searchParams.maxprice);
+            const isMinPriceMatch = !searchParams.minprice || sake.variations.some(variation => variation.price >= minPrice);
+            const isMaxPriceMatch = !searchParams.maxprice || sake.variations.some(variation => variation.price <= maxPrice);
             const spicyMatch = !searchParams.spicy.length || searchParams.spicy.some(sp => sake.spicy.includes(sp));
             const smellMatch = !searchParams.smell.length || searchParams.smell.some(smell => sake.smell.includes(smell));
             const specMatch = !searchParams.spec.length || searchParams.spec.some(spec => sake.spec.includes(spec));
@@ -40,6 +40,8 @@ const SearchResult = () => {
             const stockMatch = searchParams.stock ==='' || sake.variations.some(variation => variation.stock.toString() === searchParams.stock);
             return isNameMatch && isMinPriceMatch && isMaxPriceMatch&&spicyMatch&&smellMatch&&specMatch&&giftMatch&&stockMatch;
         });
+        console.log(filteredData)
+        console.log(sakeData)
     }
     return(
         <> 

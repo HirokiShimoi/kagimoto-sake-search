@@ -14,7 +14,7 @@ const UserSearchPage = () => {
     const [rice, setRice] = useState<string[]>([]); 
     const [error, setError] = useState("");
     const [gift,setGift] = useState("");
-    const [stock,setStock] = useState("onsrock");
+    const [stock,setStock] = useState("");
     const [priceError, setPriceError] = useState("");
 
     const {setSearchParams} = useContext(SearchContext)

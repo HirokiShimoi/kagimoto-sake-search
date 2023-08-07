@@ -8,20 +8,11 @@ import { AuthContext } from '../contexts/AuthContext';
 import "../css/Header_Footer.css";
 
 
-interface User {
-    user: string | null;
-}
-
 interface UserContextType {
     isLoggedIn: Boolean;
     setIsLoggedIn: (value:boolean) => void;
 }
 
-interface AuthContextType {
-    user: User;
-    setUser: (value: User | null) => void;
-  }
- 
 export const Header:React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -54,7 +45,7 @@ export const Header:React.FC = () => {
                     <div className='container-fluid d-flex justify-content-between'>
                         <img src={kagimoto_logo} alt="logo" width="250" className="d-inline-block align-text-top other-header-logo"/>
                         <div>
-                        <span>ユーザー名: {user ? user.username : 'Loading...'}</span>
+                        <span>ユーザー名: {user ? user.user : 'Loading...'}</span>
                             {isLoggedIn ?(
                                 <button className="btn btn-primary m-2 edit-button" onClick={logout_btn}>ログアウト</button>
                             ) : (
