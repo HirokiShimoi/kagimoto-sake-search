@@ -8,10 +8,12 @@ function EditSake() {
     const navigate = useNavigate();
     const [sake,setSake] = useState('');
     const [errorMessage,setErrorMessage] = useState('')
+    const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
 
     useEffect(()=> {
         const fetchData = async () => {
-            const result = await axios(`http://localhost:5000/sake/${id}`);
+            const result = await axios(`${apiUrl}/sake/${id}`);
             setSake(result.data)
             console.log(sake)
         };
@@ -45,7 +47,7 @@ function EditSake() {
         event.preventDefault();
         console.log('handleSave was called')
         try {
-            const response = await axios.put(`http://localhost:5000/sake/${id}`,sake);
+            const response = await axios.put(`${apiUrl}/sake/${id}`,sake);
             console.log(response.data);
             navigate(`/sake/${id}`);
         } catch (error) {

@@ -15,10 +15,12 @@ function Login() {
     const { setIsLoggedIn} = useContext(UserContext);
     const navigate = useNavigate();
     const {register, handleSubmit, formState: { errors }} = useForm();
+    const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
 
     const onSubmit = (data: any) => {
         setLoading(true);
-        axios.post('http://localhost:5000/sake/login', data)
+        axios.post('${apiUrl}/sake/login', data)
         .then(response => {
             if(setUser) {
                 setUser(response.data);
