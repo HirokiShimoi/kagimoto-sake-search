@@ -14,7 +14,7 @@ const SearchResult = () => {
     console.log(searchParams)
     
     useEffect( () => {
-        axios('${apiUrl}/sake')
+        axios(`${apiUrl}/sake`)
         .then((response) => {
             console.log(response.data);
             setSakeData(response.data)
