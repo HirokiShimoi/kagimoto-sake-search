@@ -9,11 +9,12 @@ import { Header, Footer } from '../components/Header_Footer';
 const SearchResult = () => {
     const {searchParams} = useContext(SearchContext);
     const [sakeData,setSakeData] = useState();
+    const apiUrl = process.env.REACT_APP_API_ENDPOINT;
 
     console.log(searchParams)
     
     useEffect( () => {
-        axios('http://localhost:5000/sake')
+        axios('${apiUrl}/sake')
         .then((response) => {
             console.log(response.data);
             setSakeData(response.data)

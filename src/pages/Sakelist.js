@@ -4,9 +4,10 @@ import { Header, Footer } from '../components/Header_Footer';
 
 function SakeList() {
     const [sakes, setSakes] = useState([]);
+    const apiUrl = process.env.REACT_APP_API_ENDPOINT;
   
     useEffect(() => {
-      fetch('http://localhost:5000/sake')
+      fetch('${apiUrl}/sake')
         .then(response => response.json())
         .then(data => {
             console.log(data); // 追加

@@ -10,6 +10,8 @@ function SakeDetails (){
     const { id } = useParams();
     const { isLoggedIn } = useContext(UserContext);
     const navigate =useNavigate(); 
+    const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
 
     const editProduct = () => {
         navigate(`/edit/${id}`)
@@ -17,7 +19,7 @@ function SakeDetails (){
 
     useEffect(() => {
         const fetchdata = async () => {
-            const result = await axios(`http://localhost:5000/sake/${id}`);
+            const result = await axios(`${apiUrl}/sake/${id}`);
             setSake(result.data);
             console.log(id);
         };
